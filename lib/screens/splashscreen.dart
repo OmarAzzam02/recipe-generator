@@ -1,5 +1,6 @@
-import '/packages/packages_import.dart';
 
+
+import '/packages/packages_import.dart';
 
 
 class Splash extends StatefulWidget {
@@ -12,6 +13,12 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(
+      home:  AnimatedSplashScreen(
+		splash: '', // TODO
+		nextScreen: const Home(),
+		splashTransition: SplashTransition.fadeTransition,
+      ));
+
   }
 }

@@ -11,13 +11,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-/*var list = ["eggs", "carrots", "oil"];
+  var list = ["eggs", "carrots", "oil"];
   @override
   void initState() {
     super.initState();
     ConversationOrchestrator.run(list);
-  }
-*/ // DONT TOUCH !!!!!! STILL TESTING THE API
+  } // DONT TOUCH !!!!!! STILL TESTING THE API
+
   @override
   Widget build(BuildContext context) {
     return Container();

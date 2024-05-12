@@ -2,9 +2,8 @@
 
 import '/packages/packages_import.dart';
 
-
 class HomePage extends StatefulWidget {
-  const HomePage({ super.key });
+  const HomePage({super.key});
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -13,8 +12,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
-    );
+    return Container();
   }
 }

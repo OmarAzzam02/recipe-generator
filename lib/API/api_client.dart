@@ -5,7 +5,7 @@ import 'package:receipe_generator/API/api_manager.dart';
 class ApiClient {
   final String _baseUrl = 'https://api.openai.com/v1/chat/completions';
 
-  Future<String> sendMessage(String message) async {
+  Future<dynamic> sendMessage(String message) async {
     try {
       var response = await http.post(
         Uri.parse(_baseUrl),
@@ -25,8 +25,8 @@ class ApiClient {
       );
       if (isConnected(response)) {
         var data = jsonDecode(response.body);
-        print(data);
-        return data;
+
+        return data['choices'][0]['message']['content'];
       }
     } catch (e) {
       print("eroor connecting $e");
@@ -39,3 +39,6 @@ class ApiClient {
     return response.statusCode == 200;
   }
 }
+
+
+

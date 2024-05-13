@@ -1,3 +1,12 @@
 export 'package:flutter/material.dart';
 export 'package:receipe_generator/screens/home.dart';
 export 'package:animated_splash_screen/animated_splash_screen.dart';
+//export 'package:motion_tab_bar/motion-tab-bar.dart';
+export 'package:scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart';
+export 'package:receipe_generator/screens/New.dart';
+export 'package:receipe_generator/screens/HomeScreen.dart';
+export 'package:receipe_generator/screens/BookMark.dart';
+export 'package:sweet_nav_bar/sweet_nav_bar.dart';
+export 'package:scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart';
+export 'package:motion_tab_bar/MotionTabBar.dart';
+export 'package:crystal_navigation_bar/crystal_navigation_bar.dart';

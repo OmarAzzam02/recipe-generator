@@ -1,6 +1,6 @@
 
 
-import '/packages/packages_import.dart';
+/*import '/packages/packages_import.dart';
 
 
 class Splash extends StatefulWidget {
@@ -9,16 +9,16 @@ class Splash extends StatefulWidget {
   @override
   State<Splash> createState() => _SplashState();
 }
-
-class _SplashState extends State<Splash> {
+*/
+/*class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home:  AnimatedSplashScreen(
 		splash: '', // TODO
-		nextScreen: const Home(),
+		nextScreen:  Home(),
 		splashTransition: SplashTransition.fadeTransition,
       ));
 
   }
-}
+}*/

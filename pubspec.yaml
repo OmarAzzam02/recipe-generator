@@ -44,6 +44,8 @@ dependencies:
   crystal_navigation_bar: ^1.0.0
   dot_navigation_bar: ^1.0.2
   flutter_image_slideshow: ^0.1.6
+  image_card: ^0.0.4
+  rounded_loading_button_plus: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -80,6 +82,8 @@ flutter:
     - assets/images/slide-4.png
     - assets/images/slide-5.png
     - assets/images/slide-6.png
+    - assets/images/newrecipe.jpg
+    - assets/images/recipe.jpg
 
   #   - images/a_dot_ham.jpeg
 

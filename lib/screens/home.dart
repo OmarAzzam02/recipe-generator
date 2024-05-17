@@ -2,7 +2,9 @@
 
 import 'package:receipe_generator/packages/packages_import.dart';
 import 'package:receipe_generator/screens/fav_page.dart';
+import 'package:receipe_generator/screens/generate_recipe_page.dart';
 import 'package:receipe_generator/screens/home_page.dart';
+import 'package:receipe_generator/screens/write_recipe_page.dart';
 
 class RecipeApp extends StatefulWidget {
   const RecipeApp({Key? key}) : super(key: key);
@@ -10,10 +12,11 @@ class RecipeApp extends StatefulWidget {
   @override
   _RecipeAppState createState() => _RecipeAppState();
 }
-
+////////// Touch it and i will kill you
 class _RecipeAppState extends State<RecipeApp> {
   var list = ["eggs", "carrots", "oil"];
   bool isDark = false;
+  get isDarkMode => isDark;
 
   @override
   void initState() {
@@ -33,11 +36,15 @@ class _RecipeAppState extends State<RecipeApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: Routes.home,
+      routes: {
+        Routes.home : (context) => Home(isDark: isDark, onThemeToggle: toggleTheme,),
+        Routes.write: (context) => WriteRecipe(),
+        Routes.generate: (context) => GenerateRecipe(),
+        
+      },
       theme: _getTheme(),
-      home: Home(
-        isDark: isDark,
-        onThemeToggle: toggleTheme,
-      ),
+    
     );
   }
 
@@ -49,8 +56,7 @@ class _RecipeAppState extends State<RecipeApp> {
 class Home extends StatefulWidget {
   final bool isDark;
   final Function(bool) onThemeToggle;
-    bool get isDarkMode => isDark;
-
+  bool get isDarkMode => isDark;
 
   const Home({
     Key? key,
@@ -64,21 +70,22 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
-  
-
   @override
   Widget build(BuildContext context) {
     List<Widget> tabs = [
       HomePage(),
       FavPage(),
       BookMark(),
-      NewScreen(),
+      Add(),
     ];
-
+Color bkgc = Color.fromARGB(255, 210, 207, 202);
     return Scaffold(
+      
+      backgroundColor: bkgc,
       appBar: _homeAppbar(widget.isDark),
       drawer: _homeDrawer(context, widget.isDark, widget.onThemeToggle),
       bottomNavigationBar: _bottomNavigationBar(context),
+      
       body: tabs[_currentIndex],
     );
   }
@@ -91,7 +98,7 @@ class _HomeState extends State<Home> {
       {"title": "Add", "icon": Icon(Icons.add)},
     ];
     return BottomNavigationBar(
-      selectedItemColor: Color.fromARGB(203, 205, 38, 141),
+      selectedItemColor: Color.fromARGB(202, 131, 81, 16),
       unselectedItemColor: Colors.black,
       items: list.map((e) {
         return BottomNavigationBarItem(
@@ -111,17 +118,19 @@ class _HomeState extends State<Home> {
 
 AppBar _homeAppbar(bool isDark) {
   return AppBar(
-    title: const Text("Pattry Pal"),
-    centerTitle: true,
-    backgroundColor: isDark
-        ? Color.fromARGB(197, 123, 33, 88)
-        : Color.fromARGB(175, 237, 16, 207),
-  );
+      actions: const [
+        Icon(Icons.notifications , size: 25,),
+      ],
+      centerTitle: true,
+      backgroundColor: isDark
+          ? Color.fromARGB(197, 211, 199, 177)
+          : Color.fromARGB(197, 211, 199, 177));
 }
 
 Drawer _homeDrawer(
     BuildContext context, bool isDark, Function(bool) onThemeToggle) {
   return Drawer(
+    
     child: ListView(
       children: [
         DrawerHeader(

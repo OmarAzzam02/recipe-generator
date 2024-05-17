@@ -2,82 +2,114 @@
 
 import '/packages/packages_import.dart';
 
+////DONT TOUCHHHHHHHHHHHH
 
-// ignore: use_key_in_widget_constructors
-class NewScreen extends StatefulWidget {
+class Add extends StatefulWidget {
+  const Add({Key? key}) : super(key: key);
+
   @override
-  _NewScreen createState() => _NewScreen();
+  _AddState createState() => _AddState();
 }
 
-class _NewScreen extends State<NewScreen> {
-  TextEditingController nameController = TextEditingController();
-
+class _AddState extends State<Add> {
+  int val = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            "New Recipe",
-            style: TextStyle(
-              color: Color.fromARGB(255, 224, 86, 86), // Change the text color
-              fontSize: 20.0, // Change the font size
-              fontWeight: FontWeight.bold, // Change the font weight
-              fontStyle: FontStyle.italic, // Change the font style
-              letterSpacing: 2.0, // Change the letter spacing
-            ),
-          ),
-        ),
-        body: Column(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(15),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Recipe Name',
-                  hintText: 'What do you want to call your recipe?',
+      backgroundColor: Color.fromARGB(255, 210, 207, 202),
+      body: Container(
+        margin: EdgeInsets.only(top: 15),
+        padding: EdgeInsets.all(12),
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(bottom: 15),
+              child: Text(
+                "How do you want to \n create this recipe ? ",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: WidgetTheme.textFont(),
+                  fontSize: 32,
                 ),
               ),
             ),
-//////////////////////////Category/////////////////////////////////
-            Padding(
-              padding: EdgeInsets.all(15),
-              child: TextField(
-                decoration: InputDecoration(
-                  focusColor: Color.fromARGB(255, 224, 86, 86),
-                  border: OutlineInputBorder(),
-                  labelText: 'Category',
-                  //hintText: '',
-                ),
+            Card(
+              color: Color.fromARGB(255, 209, 192, 139),
+              child: RadioListTile(
+                value: 0,
+                groupValue: val,
+                onChanged: (value) {
+                  setState(() {
+                    val = value!;
+                  });
+                },
+                title: Text("Write your recipe  "),
+                subtitle: Text("Write your own recipe details "),
+                secondary: Icon(Icons.colorize_rounded),
+                toggleable: true,
+                controlAffinity: ListTileControlAffinity.trailing,
+                activeColor: const Color.fromARGB(255, 159, 113, 43),
               ),
             ),
-/////////////////////////////////////////////////////////////////////
-            Padding(
-              padding: EdgeInsets.all(15),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Instructions',
-                  hintText: 'Steps? Notes?',
-                ),
+            Card(
+              color: Color.fromARGB(255, 209, 192, 139),
+              child: RadioListTile(
+                value: 1,
+                groupValue: val,
+                onChanged: (value) {
+                  setState(() {
+                    val = value!;
+                  });
+                },
+                title: Text("Generate "),
+                subtitle: Text(
+                    "Generate a recipe with the ingrediants you have using AI "),
+                secondary: Icon(Icons.android_rounded),
+                toggleable: true,
+                controlAffinity: ListTileControlAffinity.trailing,
+                activeColor: const Color.fromARGB(255, 159, 113, 43),
               ),
             ),
-
-////////////////////////////////////////////////////////////////////
-            Padding(
-              padding: EdgeInsets.all(15),
-              child: TextField(
-                decoration: InputDecoration(
-                  focusColor: Color.fromARGB(255, 224, 86, 86),
-                  border: OutlineInputBorder(),
-                  labelText: 'Ingredients',
-                  hintText: 'List the ingredients seperated with " , "',
-                ),
-              ),
+            SizedBox(
+              height: 20,
             ),
-           
+            ElevatedButton(
+              onPressed: () => setState(() {
+                _determineRoute(context, val);
+              }),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromARGB(202, 131, 81, 16),
+                padding: EdgeInsets.only(left: 150, right: 150),
+              ),
+              child: Text(
+                "Continue",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: WidgetTheme.textFont(),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14),
+              ),
+            )
           ],
-        ));
+        ),
+      ),
+    );
+  }
+
+  void _determineRoute(BuildContext context, int val) {
+    if (val == 0) {
+      goToWritePage(context);
+    } else if (val == 1) {
+      goToGeneratePage(context);
+    }
+  }
+
+  void goToWritePage(BuildContext context) {
+    Navigator.pushNamed(context, Routes.write);
+  }
+
+  void goToGeneratePage(BuildContext context) {
+    Navigator.pushNamed(context, Routes.generate);
   }
 }

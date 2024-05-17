@@ -11,3 +11,5 @@ export 'package:flex_color_scheme/flex_color_scheme.dart';
 export 'package:receipe_generator/Themes/appthemes.dart';
 export '/Themes/current_theme.dart';
 export '/Themes/widget_theme.dart';
+export 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+export '/routes/routes.dart';

@@ -3,6 +3,7 @@
 class ApiManager {
   static late String _apikey;
 
+  // ignore: non_constant_identifier_names
   static get ApiKey => _apikey;
 
   static void loadApiKey() {

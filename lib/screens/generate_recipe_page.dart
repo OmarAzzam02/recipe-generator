@@ -1,3 +1,5 @@
+// ignore_for_file: curly_braces_in_flow_control_structures
+
 import 'package:receipe_generator/packages/packages_import.dart';
 
 class GenerateRecipe extends StatefulWidget {
@@ -16,11 +18,11 @@ class _GenerateRecipeState extends State<GenerateRecipe> {
 
   Padding ingInputFeild() {
     return Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: TextField(
             expands: false,
             controller: ingController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintStyle: TextStyle(
                 fontSize: 15,
                 fontStyle: FontStyle.italic,
@@ -32,25 +34,25 @@ class _GenerateRecipeState extends State<GenerateRecipe> {
 
   OutlinedButton addButton() {
     return OutlinedButton(
-        child: Text('ADD',
-            selectionColor: Color.fromARGB(255, 19, 5, 4),
-            style: TextStyle(fontStyle: FontStyle.italic)),
         style: OutlinedButton.styleFrom(
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
             fontSize: 15,
             fontStyle: FontStyle.italic,
           ),
           foregroundColor: Colors.black,
         ),
         onPressed: () {
-            setState(() {
-              ingredients.add(ingController.text);
-              ingController.clear();
-            });
-        });
+          setState(() {
+            ingredients.add(ingController.text);
+            ingController.clear();
+          });
+        },
+        child: const Text('ADD',
+            selectionColor: Color.fromARGB(255, 19, 5, 4),
+            style: TextStyle(fontStyle: FontStyle.italic)));
   }
 
-Expanded showAddedIngList() {
+  Expanded showAddedIngList() {
     return Expanded(
       child: ListView.builder(
         itemCount: ingredients.length,
@@ -58,7 +60,9 @@ Expanded showAddedIngList() {
           return ListTile(
             title: Text(ingredients[index]),
             trailing: IconButton(
-              icon: Icon(Icons.delete,),
+              icon: const Icon(
+                Icons.delete,
+              ),
               onPressed: () {
                 setState(() {
                   ingredients.removeAt(index);
@@ -74,7 +78,7 @@ Expanded showAddedIngList() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: WidgetTheme.addPagesAppBar(context),//routing line dont play 
+      appBar: WidgetTheme.addPagesAppBar(context), //routing line dont play
       body: Column(children: [
         titleSubtitle(),
         ingInputFeild(),
@@ -87,12 +91,11 @@ Expanded showAddedIngList() {
   }
 }
 
-
 Padding titleSubtitle() {
   return Padding(
-    padding: EdgeInsets.all(10),
+    padding: const EdgeInsets.all(10),
     child: RichText(
-        text: TextSpan(
+        text: const TextSpan(
             style: TextStyle(
               color: Colors.black,
               fontSize: 24.0,
@@ -116,7 +119,7 @@ Padding titleSubtitle() {
 }
 
 Padding addedIngList() {
-  return Padding(
+  return const Padding(
     padding: EdgeInsets.all(10),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -134,19 +137,22 @@ RoundedLoadingButton create() {
   return RoundedLoadingButton(
     color: const Color.fromARGB(255, 207, 165, 165),
     successIcon: Icons.done,
-    successColor: Color.fromARGB(255, 61, 24, 22),
+    successColor: Colors.green,
     failedIcon: Icons.error,
-    child: Text('Generate ^_^', style: TextStyle(color: Colors.white)),
     controller: submit,
     onPressed: () {
-      Timer(Duration(seconds: 3), () {
+      Timer(const Duration(seconds: 3), () {
         if (ingredients.length >= 3)
           submit.success();
         else {
           submit.error();
-          Text("Please enter atleast 3 food items...");
+          const Text("Please enter atleast 3 food items...");
         }
       });
+      Timer(const Duration(seconds: 5), () {
+        submit.reset();
+      });
     },
+    child: const Text('Generate ^_^', style: TextStyle(color: Colors.white)),
   );
 }

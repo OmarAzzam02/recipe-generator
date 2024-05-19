@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 class ApiResponse {
   static late List<Map<String, dynamic>> _recipes;
 

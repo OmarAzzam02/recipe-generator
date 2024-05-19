@@ -2,6 +2,8 @@
 import '/packages/packages_import.dart';
 
 class BookMark extends StatefulWidget {
+  const BookMark({super.key});
+
   @override
   State<BookMark> createState() => _BookMark();
 }
@@ -45,7 +47,7 @@ class _BookMark extends State<BookMark> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Bookmarked Recipes",
            style: TextStyle(
             color: Color.fromARGB(197, 211, 199, 177),
@@ -56,12 +58,14 @@ class _BookMark extends State<BookMark> {
           ),
         ),
       ),
-      body: CategoryList(),
+      body: const CategoryList(),
     );
   }
 }
 
 class CategoryList extends StatelessWidget {
+  const CategoryList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return categoryList();
@@ -79,7 +83,7 @@ ListView categoryList() {
       return ExpansionTile(
         title: Text(
           category,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),

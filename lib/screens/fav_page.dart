@@ -1,18 +1,17 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, library_private_types_in_public_api
 
 import '/packages/packages_import.dart';
 
 class FavPage extends StatefulWidget {
-  const FavPage({ Key? key }) : super(key: key);
+  const FavPage({super.key});
 
   @override
   _FavPageState createState() => _FavPageState();
-
 }
 // add fav code hereeeeeeee
 
 class _FavPageState extends State<FavPage> {
-    final List<String> favoriteRecipes = [
+  final List<String> favoriteRecipes = [
     'Spaghetti',
     'Chicken Tikka Masala',
     'Beef Stroganoff',
@@ -64,7 +63,7 @@ class _FavPageState extends State<FavPage> {
         title: Text(
           "Favorites",
           style: TextStyle(
-            color: Colors.black,//fromARGB(197, 211, 199, 177),
+            color: Colors.black, //fromARGB(197, 211, 199, 177),
             fontSize: 22.0,
             fontWeight: FontWeight.bold,
             fontStyle: FontStyle.italic,
@@ -74,6 +73,5 @@ class _FavPageState extends State<FavPage> {
       ),
       body: favs(),
     );
-
   }
 }

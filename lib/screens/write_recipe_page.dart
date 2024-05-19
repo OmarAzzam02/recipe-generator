@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:receipe_generator/packages/packages_import.dart';
 
 //// Mariam add the writing the recipe secrtion here
@@ -30,13 +32,13 @@ class _WriteRecipeState extends State<WriteRecipe> {
       color: const Color.fromARGB(255, 207, 165, 165),
       successIcon: Icons.done,
       successColor: Color.fromARGB(255, 61, 24, 22),
-      child: Text('Create!', style: TextStyle(color: Colors.white)),
       controller: createButton,
       onPressed: () {
         Timer(Duration(seconds: 3), () {
           createButton.success();
         });
       },
+      child: Text('Create!', style: TextStyle(color: Colors.white)),
     );
   }
 
@@ -111,13 +113,13 @@ Card imageShow() {
     borderOnForeground: true,
     shape: CircleBorder(),
     semanticContainer: true,
+    margin: EdgeInsets.all(20),
     child: Image.asset(
       'images/newrecipe.jpg',
       width: double.maxFinite,
       height: 250,
       fit: BoxFit.cover,
     ),
-    margin: EdgeInsets.all(20),
   );
 }
 

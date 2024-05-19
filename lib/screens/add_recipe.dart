@@ -5,7 +5,7 @@ import '/packages/packages_import.dart';
 ////DONT TOUCHHHHHHHHHHHH
 
 class Add extends StatefulWidget {
-  const Add({Key? key}) : super(key: key);
+  const Add({super.key});
 
   @override
   _AddState createState() => _AddState();

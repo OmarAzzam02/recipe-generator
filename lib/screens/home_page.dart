@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
               itemCount: cardItems.length,
               itemBuilder: (context, index) {
                 final item = cardItems[index];
-                return Container(
+                return SizedBox(
                   width: 200,
                   height: double.infinity,
                   child: Card(

@@ -28,8 +28,10 @@ class _AddState extends State<Add> {
                 "How do you want to \n create this recipe ? ",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontFamily: WidgetTheme.textFont(),
-                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+             fontFamily: WidgetTheme.textFont(),
+              fontSize: 32,
+            letterSpacing: 1.0,
                 ),
               ),
             ),

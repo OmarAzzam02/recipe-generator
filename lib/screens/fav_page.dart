@@ -25,19 +25,8 @@ class _FavPageState extends State<FavPage> {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10.0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                  offset: Offset(0, 3),
-                ),
-              ],
-            ),
+          child: Card(
+              color: Color.fromARGB(255, 209, 192, 139),
             child: ListTile(
               contentPadding: EdgeInsets.all(16.0),
               title: Text(
@@ -63,11 +52,10 @@ class _FavPageState extends State<FavPage> {
         title: Text(
           "Favorites",
           style: TextStyle(
-            color: Colors.black, //fromARGB(197, 211, 199, 177),
-            fontSize: 22.0,
             fontWeight: FontWeight.bold,
-            fontStyle: FontStyle.italic,
-            letterSpacing: 2.0,
+             fontFamily: WidgetTheme.textFont(),
+              fontSize: 32,
+            letterSpacing: 1.0,
           ),
         ),
       ),

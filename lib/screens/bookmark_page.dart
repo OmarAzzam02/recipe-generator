@@ -47,14 +47,13 @@ class _BookMark extends State<BookMark> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
+        title: Text(
           "Bookmarked Recipes",
            style: TextStyle(
-            color: Color.fromARGB(197, 211, 199, 177),
-            fontSize: 22.0,
-            fontWeight: FontWeight.bold,
-            fontStyle: FontStyle.italic,
-            letterSpacing: 2.0,
+             fontWeight: FontWeight.bold,
+             fontFamily: WidgetTheme.textFont(),
+              fontSize: 32,
+            letterSpacing: 1.0,
           ),
         ),
       ),
@@ -84,8 +83,9 @@ ListView categoryList() {
         title: Text(
           category,
           style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
+          
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
           ),
         ),
         children: recipes

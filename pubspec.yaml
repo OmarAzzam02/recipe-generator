@@ -46,6 +46,8 @@ dependencies:
   flutter_image_slideshow: ^0.1.6
   image_card: ^0.0.4
   rounded_loading_button_plus: ^3.0.1
+  firebase_core: ^2.31.0
+  cloud_firestore: ^4.17.4
 
 dev_dependencies:
   flutter_test:

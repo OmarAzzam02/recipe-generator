@@ -16,10 +16,11 @@ class ConversationOrchestrator {
 
     String message = buffer.toString();
     final String finalMessage =
-        "act like a professional chef and generate all the possible dishes with instructions , dont mention an ingrediant that is not in these ingriediants $message return  it like this name, instructions and end  each step by a '.' , Catrgory choose one from these categories (breakfast,Lunch,Drinks,Pastas,Salads,Desserts,Soups)   )";
+        "act like a professional chef and generate all the possible dishes with instructions , dont mention an ingrediant that is not in these ingriediants $message return  it like this name, instructions and end  each step by a '.' , Catrgory you MUST choose one from these categories (breakfast,Lunch,Drinks,Pastas,Salads,Desserts,Soups) DONT FORGET ANYTHING )";
 
     var response = await chatGPT.sendMessage(finalMessage);
-
+  
     ApiResponse.setResponse(response); // fromat the response
+
   }
 }

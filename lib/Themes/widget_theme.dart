@@ -32,10 +32,32 @@ class WidgetTheme {
        
       ),
     ], centerTitle: true, backgroundColor: const Color.fromARGB(197, 211, 199, 177) ,
+   
+    );
+    
+      
+      
+  }
+
+    static AppBar generatePagesAppBar(BuildContext context) {
+    return AppBar(title: Text('Generated Recipes' , style: TextStyle( 
+       fontFamily: WidgetTheme.textFont(),
+       fontWeight: FontWeight.bold,
+    ),), actions: const [
+      Icon(
+        Icons.notifications,
+        size: 25,
+       
+      ),
+    ], centerTitle: true, backgroundColor: const Color.fromARGB(197, 211, 199, 177) ,
     leading: IconButton( 
       icon: Icon(Icons.arrow_back , size: 20,),
       onPressed: () => Navigator.pop(context),
+        
     ),
+
+  
+     
     
       
       );

@@ -1,18 +1,22 @@
 // ignore_for_file: avoid_print
 
 class ApiResponse {
-  static late List<Map<String, dynamic>> _recipes;
+  static late List<Map> _recipes;
 
   static get generatedRecipes => _recipes;
 
   static setResponse(var response) {
     _recipes = formatRecipes(response);
-    print(_recipes[1]['category']);
-  }
 
+    if (_recipes.isNotEmpty) {
+      print("First recipe title: ${_recipes[0]['title']}");
+    } else {
+      print("Error: No recipes found in the response");
+    }
+  }
 }
 
-List<Map<String, dynamic>> formatRecipes(String str) {
+List<Map> formatRecipes(String str) {
   List<Map<String, dynamic>> recipes = [];
 
   // Split the string into individual recipe strings
@@ -44,6 +48,6 @@ List<Map<String, dynamic>> formatRecipes(String str) {
     recipes.add(
         {'title': title, 'instructions': instructions, 'category': category});
   }
-
+    print(recipes);
   return recipes;
 }

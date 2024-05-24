@@ -12,17 +12,12 @@ class RecipeApp extends StatefulWidget {
   @override
   _RecipeAppState createState() => _RecipeAppState();
 }
+
 ////////// Touch it and i will kill you
 class _RecipeAppState extends State<RecipeApp> {
   var list = ["eggs", "carrots", "oil"];
   bool isDark = false;
   get isDarkMode => isDark;
-
-  @override
-  void initState() {
-    super.initState();
-    //ConversationOrchestrator.run(list);
-  } // DONT TOUCH !!!!!! STILL TESTING THE API
 
   ThemeData lightTheme = ThemeData.light();
   ThemeData darkTheme = ThemeData.dark();
@@ -38,13 +33,14 @@ class _RecipeAppState extends State<RecipeApp> {
     return MaterialApp(
       initialRoute: Routes.home,
       routes: {
-        Routes.home : (context) => Home(isDark: isDark, onThemeToggle: toggleTheme,),
+        Routes.home: (context) => Home(
+              isDark: isDark,
+              onThemeToggle: toggleTheme,
+            ),
         Routes.write: (context) => WriteRecipe(),
         Routes.generate: (context) => GenerateRecipe(),
-        
       },
       theme: _getTheme(),
-    
     );
   }
 
@@ -78,14 +74,12 @@ class _HomeState extends State<Home> {
       BookMark(),
       Add(),
     ];
-Color bkgc = Color.fromARGB(255, 210, 207, 202);
+    Color bkgc = Color.fromARGB(255, 210, 207, 202);
     return Scaffold(
-      
       backgroundColor: bkgc,
       appBar: _homeAppbar(widget.isDark),
       drawer: _homeDrawer(context, widget.isDark, widget.onThemeToggle),
       bottomNavigationBar: _bottomNavigationBar(context),
-      
       body: tabs[_currentIndex],
     );
   }
@@ -119,7 +113,10 @@ Color bkgc = Color.fromARGB(255, 210, 207, 202);
 AppBar _homeAppbar(bool isDark) {
   return AppBar(
       actions: const [
-        Icon(Icons.notifications , size: 25,),
+        Icon(
+          Icons.notifications,
+          size: 25,
+        ),
       ],
       centerTitle: true,
       backgroundColor: isDark
@@ -130,7 +127,6 @@ AppBar _homeAppbar(bool isDark) {
 Drawer _homeDrawer(
     BuildContext context, bool isDark, Function(bool) onThemeToggle) {
   return Drawer(
-    
     child: ListView(
       children: [
         DrawerHeader(

@@ -1,10 +1,12 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_final_fields
 
+import 'package:receipe_generator/Services/database_services.dart';
+import 'package:receipe_generator/Themes/widget_theme.dart';
 import 'package:receipe_generator/modules/recipes.dart';
 import 'package:receipe_generator/packages/packages_import.dart';
 
 class WriteRecipe extends StatefulWidget {
-  const WriteRecipe({super.key});
+  const WriteRecipe({Key? key}) : super(key: key);
 
   @override
   State<WriteRecipe> createState() => _WriteRecipeState();
@@ -24,51 +26,117 @@ class _WriteRecipeState extends State<WriteRecipe> {
   final TextEditingController _instructionsController = TextEditingController();
   final TextEditingController _ingredientsController = TextEditingController();
 
-  final RoundedLoadingButtonController createButton = RoundedLoadingButtonController();
+  final RoundedLoadingButtonController createButton =
+      RoundedLoadingButtonController();
+
+  List<String> _ingredientsList = [];
+  List<String> _instructionsList = [];
+
+  bool _recipeNameError = false;
+  bool _instructionsError = false;
+  bool _ingredientsError = false;
+  bool _categoryError = false;
+  final _databaseService = DatabaseService();
 
   RoundedLoadingButton create() {
     return RoundedLoadingButton(
-      color: const Color.fromARGB(255, 207, 165, 165),
+      color: Colors.brown,
       successIcon: Icons.done,
-      successColor: Color.fromARGB(255, 61, 24, 22),
+      successColor: Colors.green,
       controller: createButton,
       onPressed: () {
-        _addToDatabase();
-        Timer(Duration(seconds: 3), () {
-          createButton.success();
-        });
+        if (_validateInputs()) {
+          _addToDatabase();
+          Timer(const Duration(seconds: 3), () {
+            createButton.success();
+          });
+        } else {
+          Timer(const Duration(seconds: 5), () {
+            createButton.error();
+          });
+          Timer(const Duration(seconds: 6), () {
+            createButton.reset();
+          });
+          _showErrorBorders();
+        }
       },
-      child: Text('Create!', style: TextStyle(color: Colors.white)),
+      child: Text('Save Recipe',
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: WidgetTheme.textFont(),
+          )),
     );
+  }
+
+  bool _validateInputs() {
+    bool isValid = true;
+
+    if (_recipeNameController.text.isEmpty) {
+      isValid = false;
+      _recipeNameError = true;
+    } else {
+      _recipeNameError = false;
+    }
+
+    if (_instructionsList.isEmpty) {
+      isValid = false;
+      _instructionsError = true;
+    } else {
+      _instructionsError = false;
+    }
+
+    if (_ingredientsList.isEmpty) {
+      isValid = false;
+      _ingredientsError = true;
+    } else {
+      _ingredientsError = false;
+    }
+
+    if (_selectedCategories == null) {
+      isValid = false;
+      _categoryError = true;
+    } else {
+      _categoryError = false;
+    }
+
+    return isValid;
+  }
+
+  void _showErrorBorders() {
+    setState(() {});
   }
 
   void _addToDatabase() {
     String title = _recipeNameController.text;
-    String instructions = _instructionsController.text;
-    String ingredients = _ingredientsController.text;
-    String category = _selectedCategories ?? "";
+    String instructions = _instructionsList.join('-');
+    String ingrediants = _ingredientsList.join(',');
+    String category = _selectedCategories!;
 
     Recipe recipe = Recipe(
-      title: title,
-      instructions: instructions.split('\n').toString(), 
-      category: category,
-      favState: false, 
-      ingrediants: ingredients.split(',').toString(), 
-    );
+        title: title,
+        instructions: instructions,
+        category: category,
+        favState: false,
+        ingrediants: ingrediants);
 
-    //  TODO Add the recipe to the database here
-    // ...
+    _databaseService.addRecipe(recipe);
   }
 
   Padding categoryInput() {
     return Padding(
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: DropdownButtonFormField<String>(
         focusColor: Colors.brown,
         decoration: InputDecoration(
           labelText: 'Category',
           hintText: 'Select a category',
-          icon: Icon(Icons.category),
+          icon: const Icon(Icons.category),
+          errorText: _categoryError ? 'Category cannot be empty' : null,
+          errorBorder: _categoryError
+              ? const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                )
+              : null,
         ),
         value: _selectedCategories,
         onChanged: (value) {
@@ -89,7 +157,9 @@ class _WriteRecipeState extends State<WriteRecipe> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: WidgetTheme.addPagesAppBar(context),
+      appBar: AppBar(
+        title: const Text('Write Recipe'),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -108,8 +178,8 @@ class _WriteRecipeState extends State<WriteRecipe> {
 
   Container imageShow() {
     return Container(
-      decoration: BoxDecoration(),
-      margin: EdgeInsets.only(bottom: 10),
+      decoration: const BoxDecoration(),
+      margin: const EdgeInsets.only(bottom: 10),
       child: Image.asset(
         'assets/images/newrecipe.jpg',
         width: double.infinity,
@@ -121,13 +191,19 @@ class _WriteRecipeState extends State<WriteRecipe> {
 
   Padding recipeNameInput() {
     return Padding(
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: TextField(
         controller: _recipeNameController,
         decoration: InputDecoration(
           labelText: 'Recipe Name',
           hintText: 'What do you want to call your recipe?',
-          icon: Icon(Icons.bookmark_outline_outlined),
+          icon: const Icon(Icons.bookmark_outline_outlined),
+          errorText: _recipeNameError ? 'Recipe name cannot be empty' : null,
+          errorBorder: _recipeNameError
+              ? const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                )
+              : null,
         ),
       ),
     );
@@ -135,37 +211,166 @@ class _WriteRecipeState extends State<WriteRecipe> {
 
   Padding instructionsInput() {
     return Padding(
-      padding: EdgeInsets.all(15),
-      child: TextField(
-        controller: _instructionsController,
-        decoration: InputDecoration(
-          labelText: 'Instructions',
-          hintText: 'Steps? Notes?',
-          icon: Icon(Icons.list),
-        ),
-        maxLines: null,
-        keyboardType: TextInputType.multiline,
+      padding: const EdgeInsets.all(15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          TextField(
+            controller: _instructionsController,
+            decoration: InputDecoration(
+              labelText: 'Instructions',
+              hintText: 'Steps? Notes?',
+              icon: const Icon(Icons.list),
+              errorText:
+                  _instructionsError ? 'Instructions cannot be empty' : null,
+              errorBorder: _instructionsError
+                  ? const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                    )
+                  : null,
+            ),
+            maxLines: null,
+            keyboardType: TextInputType.multiline,
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8.0,
+            runSpacing: 4.0,
+            children: _buildInstructionsChips(),
+          ),
+          const SizedBox(height: 10),
+          ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.brown,
+            ),
+            onPressed: _addInstruction,
+            icon: const Icon(Icons.add),
+            label: Text(
+              'Add Instruction',
+              style: TextStyle(
+                fontFamily: WidgetTheme.textFont(),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  void _addInstruction() {
+    setState(() {
+      String instruction = _instructionsController.text.trim();
+      if (instruction.isNotEmpty) {
+        _instructionsList.add(instruction);
+        _instructionsController.clear();
+      }
+    });
+  }
+
+  List<Widget> _buildInstructionsChips() {
+    List<Widget> chips = [];
+    for (int i = 0; i < _instructionsList.length; i++) {
+      Widget chip = Chip(
+        label: Text(_instructionsList[i]),
+        deleteIcon: const Icon(Icons.cancel),
+        onDeleted: () {
+          _removeInstruction(i);
+        },
+      );
+      chips.add(chip);
+    }
+    return chips;
+  }
+
+  void _removeInstruction(int index) {
+    setState(() {
+      _instructionsList.removeAt(index);
+    });
   }
 
   Padding ingInput() {
     return Padding(
-      padding: EdgeInsets.all(15),
-      child: TextField(
-        controller: _ingredientsController,
-        decoration: InputDecoration(
-          focusColor: Color.fromARGB(255, 224, 86, 86),
-          labelText: 'Ingredients',
-          hintText: 'List the ingredients separated with ", "',
-          icon: Icon(Icons.food_bank_rounded),
-        ),
+      padding: const EdgeInsets.all(15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          TextField(
+            controller: _ingredientsController,
+            decoration: InputDecoration(
+              labelText: 'Ingredients',
+              hintText: 'List the ingredients separated with   ',
+              icon: const Icon(Icons.food_bank_rounded),
+              errorText:
+                  _ingredientsError ? 'Ingredients cannot be empty' : null,
+              errorBorder: _ingredientsError
+                  ? const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                    )
+                  : null,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8.0,
+            runSpacing: 4.0,
+            children: _buildIngredientsChips(),
+          ),
+          const SizedBox(height: 10),
+          ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.brown,
+              foregroundColor: Colors.white,
+            ),
+            onPressed: _addIngredient,
+            icon: const Icon(Icons.add),
+            label: Text(
+              'Add Ingredient',
+              style: TextStyle(
+                fontFamily: WidgetTheme.textFont(),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 
+  void _addIngredient() {
+    setState(() {
+      String ingredient = _ingredientsController.text.trim();
+      if (ingredient.isNotEmpty) {
+        _ingredientsList.add(ingredient);
+        _ingredientsController.clear();
+      }
+    });
+  }
+
+  List<Widget> _buildIngredientsChips() {
+    List<Widget> chips = [];
+    for (int i = 0; i < _ingredientsList.length; i++) {
+      Widget chip = Chip(
+        label: Text(_ingredientsList[i]),
+        deleteIcon: const Icon(Icons.cancel),
+        onDeleted: () {
+          _removeIngredient(i);
+        },
+      );
+      chips.add(chip);
+    }
+    return chips;
+  }
+
+  void _removeIngredient(int index) {
+    setState(() {
+      _ingredientsList.removeAt(index);
+    });
+  }
+
   ListTile msg() {
-    return ListTile(
+    return const ListTile(
       title: Text(
         "Let us create a delicious recipe!!",
         style: TextStyle(

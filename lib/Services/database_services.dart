@@ -28,6 +28,18 @@ class DatabaseService {
       }
 
 
+      void updateRecipe(String id , Recipe recipe ){
+        _recipeRef.doc(id).update(recipe.tojson()); 
+
+      }
+
+
+  void deleteRecipe(String id){
+      
+      _recipeRef.doc(id).delete();
+  }
+
+
       
 
 

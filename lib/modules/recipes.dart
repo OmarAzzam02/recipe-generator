@@ -3,7 +3,7 @@ class Recipe {
   final String ingrediants;
   final String instructions;
   final String category;
-  bool? favState;
+  bool favState;
 
   Recipe(
       {required this.title,
@@ -36,5 +36,20 @@ class Recipe {
       'category': category,
       'favState': favState
     };
+  }
+
+  Recipe copyWith({
+    String? title,
+    final String? ingrediants,
+    final String? instructions,
+    final String? category,
+    bool? favState,
+  }) {
+    return Recipe(
+        title: title ?? this.title,
+        instructions: instructions ?? this.instructions,
+        category: category ?? this.category,
+        favState: favState ?? this.favState,
+        ingrediants: ingrediants ?? this.ingrediants);
   }
 }

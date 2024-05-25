@@ -3,16 +3,16 @@ import 'package:receipe_generator/Services/database_services.dart';
 import 'package:receipe_generator/modules/recipes.dart';
 import 'package:receipe_generator/packages/packages_import.dart';
 
-class DetailsScreen extends StatefulWidget {
+class GeneratedDetails extends StatefulWidget {
   final Map pickedRecipe;
   final List ingredients;
-  DetailsScreen(this.pickedRecipe, this.ingredients, {super.key});
+  GeneratedDetails(this.pickedRecipe, this.ingredients, {super.key});
   final DatabaseService _databaseService = DatabaseService();
   @override
-  State<DetailsScreen> createState() => _DetailsScreenState();
+  State<GeneratedDetails> createState() => _GeneratedDetailsState();
 }
 
-class _DetailsScreenState extends State<DetailsScreen> {
+class _GeneratedDetailsState extends State<GeneratedDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,7 +139,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
   }
 
   void _addToDB() {
-    print(widget.pickedRecipe['instructions'].runtimeType);
+    
     Recipe recipe = Recipe(
         title: widget.pickedRecipe['title'].toString(),
         instructions: widget.pickedRecipe['instructions'].join(''),

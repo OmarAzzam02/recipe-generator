@@ -9,6 +9,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.34"
+  animated_floating_widget:
+    dependency: "direct main"
+    description:
+      name: animated_floating_widget
+      sha256: c18335529d4bbe7a2ce70a1ddda46d3bf661ca34e06c31bd06eb81dde9469794
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.6"
+  animated_introduction:
+    dependency: "direct main"
+    description:
+      name: animated_introduction
+      sha256: b5fa5d51ae845151bc84fac64b763258aa18929a0c6cab1e1d47d911fc3d7ea3
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   animated_splash_screen:
     dependency: "direct main"
     description:
@@ -17,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.0"
+  animated_text_kit:
+    dependency: "direct main"
+    description:
+      name: animated_text_kit
+      sha256: "37392a5376c9a1a503b02463c38bc0342ef814ddbb8f9977bc90f2a84b22fa92"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.2"
   args:
     dependency: transitive
     description:
@@ -129,6 +153,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.0"
+  fading_in_widget:
+    dependency: "direct main"
+    description:
+      name: fading_in_widget
+      sha256: c8ddeccbc988454cd51e3cbc98b7be7a6aa77d4f43ab414e4cf3d31ae49de664
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
+  fading_widget_animation:
+    dependency: "direct main"
+    description:
+      name: fading_widget_animation
+      sha256: "9d6d0840e829f7f7536508618bc8a6726dbc7b9cd9578f1772c58c640c0ad05e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -190,6 +230,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_animation_plus:
+    dependency: "direct main"
+    description:
+      name: flutter_animation_plus
+      sha256: "3150c2b3f116270d3794f979c269689bcefc1c4d6a4bd13245c68d751f385e0b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.7"
   flutter_image_slideshow:
     dependency: "direct main"
     description:

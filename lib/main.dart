@@ -1,5 +1,6 @@
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:receipe_generator/screens/splashscreen.dart';
 import 'firebase_options.dart';  
 import '/packages/packages_import.dart';
 
@@ -13,7 +14,7 @@ void main() async {
     );
     runApp(const RecipeApp());
   } catch (e) {
-    // Handle initialization error
+   
     print('Firebase initialization failed: $e');
   }
 }

@@ -6,16 +6,17 @@ import 'package:receipe_generator/screens/generate_recipe_page.dart';
 import 'package:receipe_generator/screens/home_page.dart';
 import 'package:receipe_generator/screens/write_recipe_page.dart';
 
-class RecipeApp extends StatefulWidget {
-  const RecipeApp({Key? key}) : super(key: key);
+
+class RecipeAppHome extends StatefulWidget {
+  const RecipeAppHome({Key? key}) : super(key: key);
 
   @override
-  _RecipeAppState createState() => _RecipeAppState();
+  _RecipeAppHomeState createState() => _RecipeAppHomeState();
 }
 
-////////// Touch it and i will kill you
-class _RecipeAppState extends State<RecipeApp> {
-  var list = ["eggs", "carrots", "oil"];
+
+class _RecipeAppHomeState extends State<RecipeAppHome> {
+
   bool isDark = false;
   get isDarkMode => isDark;
 
@@ -39,6 +40,7 @@ class _RecipeAppState extends State<RecipeApp> {
             ),
         Routes.write: (context) => WriteRecipe(),
         Routes.generate: (context) => GenerateRecipe(),
+      
       },
       theme: _getTheme(),
     );

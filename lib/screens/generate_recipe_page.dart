@@ -17,9 +17,10 @@ class _GenerateRecipeState extends State<GenerateRecipe> {
   TextEditingController ingController = TextEditingController();
   bool isInputEmpty = false;
 
-  Padding ingInputField() {
-    return Padding(
+  Container ingInputField() {
+    return Container(
       padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.only(top: 0),
       child: TextField(
         controller: ingController,
         decoration: InputDecoration(
@@ -41,14 +42,18 @@ class _GenerateRecipeState extends State<GenerateRecipe> {
     );
   }
 
-  OutlinedButton addButton() {
-    return OutlinedButton(
-      style: OutlinedButton.styleFrom(
+  ElevatedButton addButton() {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
         textStyle: const TextStyle(
           fontSize: 15,
           fontStyle: FontStyle.italic,
+           
         ),
-        foregroundColor: Colors.black,
+        shape: const  BeveledRectangleBorder(),
+        padding: const EdgeInsets.only(left: 150 , right: 150),
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.brown,
       ),
       onPressed: () {
         setState(() {
@@ -98,7 +103,7 @@ class _GenerateRecipeState extends State<GenerateRecipe> {
     return Container(
       margin: const EdgeInsets.only(bottom: 25),
       child: RoundedLoadingButton(
-        color: const Color.fromARGB(255, 207, 165, 165),
+        color: Colors.brown,
         successIcon: Icons.done,
         successColor: Colors.green,
         failedIcon: Icons.error,
@@ -145,9 +150,10 @@ class _GenerateRecipeState extends State<GenerateRecipe> {
   }
 }
 
-Padding titleSubtitle() {
-  return Padding(
+Container titleSubtitle() {
+  return Container(
     padding: const EdgeInsets.all(10),
+    margin: const EdgeInsets.only(top: 10),
     child: RichText(
       text: const TextSpan(
         style: TextStyle(color: Colors.black, fontSize: 24.0),

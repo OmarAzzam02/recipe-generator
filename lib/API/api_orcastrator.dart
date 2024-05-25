@@ -16,7 +16,7 @@ class ConversationOrchestrator {
 
     String message = buffer.toString();
     final String finalMessage =
-        "act like a professional chef and generate all the possible dishes with instructions , dont mention an ingrediant that is not in these ingriediants $message return  it like this name, instructions and end  each step by a '.' , Catrgory you MUST choose one from these categories (breakfast,Lunch,Drinks,Pastas,Salads,Desserts,Soups) DONT FORGET ANYTHING )";
+        "act like a professional chef and generate all the possible dishes with instructions , dont mention an ingrediant that is not in these ingriediants $message return  it like this name, instructions and end  each step by a '.' , Catrgory you MUST choose one from these categories (breakfast,Lunch,Drinks,Pastas,Salads,Desserts,Soups) DONT FORGET ANYTHING And Keep in mind the order )";
 
     var response = await chatGPT.sendMessage(finalMessage);
   

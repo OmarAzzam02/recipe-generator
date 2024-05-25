@@ -1,7 +1,7 @@
 import 'package:receipe_generator/API/api_orcastrator.dart';
 import 'package:receipe_generator/API/api_response.dart';
 import 'package:receipe_generator/screens/generate_recipe_page.dart';
-import 'package:receipe_generator/screens/recipe_details_screen.dart';
+import 'package:receipe_generator/screens/generated_recipe_details_screen.dart';
 import '/packages/packages_import.dart';
 
 class ShowOutput extends StatefulWidget {
@@ -120,7 +120,7 @@ class _ShowOutputState extends State<ShowOutput> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => DetailsScreen(
+                                    builder: (context) =>GeneratedDetails(
                                         results[index], ingredients)));
                           });
                         },

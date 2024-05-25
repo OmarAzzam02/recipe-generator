@@ -9,8 +9,6 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-////DONT TOUCHHHHHHHHHHHHhhhhhhhhhhhhhh
-///// - Designer omar
 
 class _HomePageState extends State<HomePage> {
   List<Map> cardItems = [

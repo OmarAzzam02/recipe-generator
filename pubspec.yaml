@@ -48,6 +48,12 @@ dependencies:
   rounded_loading_button_plus: ^3.0.1
   firebase_core: ^2.31.0
   cloud_firestore: ^4.17.4
+  fading_in_widget: ^1.0.1
+  flutter_animation_plus: ^0.0.7
+  fading_widget_animation: ^0.0.1
+  animated_floating_widget: ^0.0.6
+  animated_text_kit: ^4.2.2
+  animated_introduction: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -86,6 +92,7 @@ flutter:
     - assets/images/slide-6.png
     - assets/images/newrecipe.jpg
     - assets/images/recipe.jpg
+    - assets/images/LOGO.png
 
   #   - images/a_dot_ham.jpeg
 
